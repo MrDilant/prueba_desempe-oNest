@@ -5,9 +5,9 @@ REST API to manage the life cycle of preventive and corrective maintenance for t
 ## Coder information
 
 - **Name:** Dilant Murillo
-- **Clan:** [YOUR CLAN]
+- **Clan:** Centurion
 - **GitHub:** MrDilant
-- **Repository:** [REPOSITORY URL]
+- **Repository:** https://github.com/MrDilant/prueba_desempe-oNest.git
 
 ## Technologies
 
@@ -18,7 +18,7 @@ NestJS, TypeScript, TypeORM, PostgreSQL, JWT (`@nestjs/jwt`), bcrypt (password h
 Requirements: Docker and Docker Compose.
 
 ```bash
-git clone [REPOSITORY URL]
+git clone https://github.com/MrDilant/prueba_desempe-oNest.git
 cd fleetcore
 cp .env.example .env
 docker compose up -d --build
@@ -53,7 +53,7 @@ Requirements: Node.js (LTS), npm and PostgreSQL 14 or higher.
 ### 1. Install dependencies
 
 ```bash
-git clone [REPOSITORY URL]
+git clone https://github.com/MrDilant/prueba_desempe-oNest.git
 cd fleetcore
 npm install
 ```
@@ -244,7 +244,7 @@ The tests use mocks (no real database) and cover:
 
 Coverage is measured on **services and guards** (`src/**/*.service.ts` and `src/**/*.guard.ts`), where the business rules are. It is set in `jest.config.ts`.
 
-**Coverage obtained:** [X]% (verify with `npm run test:cov`)
+**Coverage obtained:** (verify with `npm run test:cov`)
 
 ## Project structure
 
