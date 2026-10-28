@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:16
+    container_name: fleetcore-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - pgdata:/var/lib/postgresql/data   # persistencia: los datos sobreviven al reiniciar
+    networks:
+      - fleetcore-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: .
+    container_name: fleetcore-api
+    restart: unless-stopped
+    env_file: .env                         # PORT, JWT_SECRET, API_KEYS, etc.
+    environment:
+      DB_HOST: db                          # dentro de Docker la BD se llama "db", no "localhost"
+      DB_PORT: 5432
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    depends_on:
+      db:
+        condition: service_healthy         # la API espera a que PostgreSQL esté lista
+    networks:
+      - fleetcore-net
+
+networks:
+  fleetcore-net:
+    driver: bridge
+
+volumes:
+  pgdata:
